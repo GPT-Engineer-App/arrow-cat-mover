@@ -3,13 +3,28 @@ import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/f
 import { Container, Box, Image, Button, VStack, HStack } from "@chakra-ui/react";
 
 const Index = () => {
-  const [position, setPosition] = useState({ top: 50, left: 50 });
+  const [catPosition, setCatPosition] = useState({ top: 50, left: 50 });
+  const [dogPosition, setDogPosition] = useState({ top: 50, left: 50 });
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleKeyDown = (event) => {
     const { key } = event;
     setIsAnimating(true);
-    setPosition((prevPosition) => {
+    setCatPosition((prevPosition) => {
+      switch (key) {
+        case "ArrowUp":
+          return { ...prevPosition, top: prevPosition.top - 10 };
+        case "ArrowDown":
+          return { ...prevPosition, top: prevPosition.top + 10 };
+        case "ArrowLeft":
+          return { ...prevPosition, left: prevPosition.left - 10 };
+        case "ArrowRight":
+          return { ...prevPosition, left: prevPosition.left + 10 };
+        default:
+          return prevPosition;
+      }
+    });
+    setDogPosition((prevPosition) => {
       switch (key) {
         case "ArrowUp":
           return { ...prevPosition, top: prevPosition.top - 10 };
@@ -41,7 +56,21 @@ const Index = () => {
 
   const handleButtonClick = (direction) => {
     setIsAnimating(true);
-    setPosition((prevPosition) => {
+    setCatPosition((prevPosition) => {
+      switch (direction) {
+        case "up":
+          return { ...prevPosition, top: prevPosition.top - 10 };
+        case "down":
+          return { ...prevPosition, top: prevPosition.top + 10 };
+        case "left":
+          return { ...prevPosition, left: prevPosition.left - 10 };
+        case "right":
+          return { ...prevPosition, left: prevPosition.left + 10 };
+        default:
+          return prevPosition;
+      }
+    });
+    setDogPosition((prevPosition) => {
       switch (direction) {
         case "up":
           return { ...prevPosition, top: prevPosition.top - 10 };
@@ -64,8 +93,18 @@ const Index = () => {
           src="/images/realistic-cat.png"
           alt="Movable Cat"
           position="absolute"
-          top={`${position.top}%`}
-          left={`${position.left}%`}
+          top={`${catPosition.top}%`}
+          left={`${catPosition.left}%`}
+          width="100px"
+          height="100px"
+          transition="top 0.3s, left 0.3s"
+        />
+        <Image
+          src="/images/realistic-dog.png"
+          alt="Movable Dog"
+          position="absolute"
+          top={`${dogPosition.top}%`}
+          left={`${dogPosition.left}%`}
           width="100px"
           height="100px"
           transition="top 0.3s, left 0.3s"
