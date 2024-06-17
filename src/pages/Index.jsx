@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Container, Box, Image, Button, VStack, HStack } from "@chakra-ui/react";
 
 const Index = () => {
@@ -71,12 +72,12 @@ const Index = () => {
         />
       </Box>
       <VStack spacing={4} mt={4}>
-        <Button onClick={() => handleButtonClick("up")}>Up</Button>
+        <Button onClick={() => handleButtonClick("up")}><FaArrowUp /></Button>
         <HStack spacing={4}>
-          <Button onClick={() => handleButtonClick("left")}>Left</Button>
-          <Button onClick={() => handleButtonClick("right")}>Right</Button>
+          <Button onClick={() => handleButtonClick("left")}><FaArrowLeft /></Button>
+          <Button onClick={() => handleButtonClick("right")}><FaArrowRight /></Button>
         </HStack>
-        <Button onClick={() => handleButtonClick("down")}>Down</Button>
+        <Button onClick={() => handleButtonClick("down")}><FaArrowDown /></Button>
       </VStack>
     </Container>
   );
